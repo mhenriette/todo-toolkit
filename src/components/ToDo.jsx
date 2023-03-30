@@ -4,10 +4,15 @@ import plus from "../assets/plus.svg";
 import { addTask } from "../features/taskSlice";
 
 import Form from "./Form";
-
 const ToDo = () => {
-  const dispatch = useDispatch()
-  const [text, setText] = useState("")
+  const dispatch = useDispatch();
+  const [text, setText] = useState("");
+  const handleText = () => {
+    if (text.length > 0) {
+      dispatch(addTask(text));
+      setText("");
+    } else alert("The name of the task must be provided");
+  };
   return (
     <div className="my-32 lg:w-1/2 text-center">
       <h1 className="text-gray-300 text-7xl font-bold my-10">todos</h1>
@@ -19,11 +24,16 @@ const ToDo = () => {
           name="taskName"
           value={text}
           onChange={(event) => {
-            setText(event.target.value)
+            setText(event.target.value);
           }}
         />
-        <button >
-          <img src={plus} alt="plus" className="w-8 h-8" onClick={() => dispatch(addTask(text))} />
+        <button>
+          <img
+            src={plus}
+            alt="plus"
+            className="w-8 h-8"
+            onClick={() => handleText()}
+          />
         </button>
       </div>
       <Form />
