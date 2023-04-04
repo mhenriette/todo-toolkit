@@ -6,12 +6,7 @@ const Form = () => {
   return (
     <form className="m-5" onSubmit={(event) => event.preventDefault()}>
       {tasks.length > 0 ? (
-        tasks.map((task) => (
-          < Task
-            {...task}
-            key={task.id}
-          />
-        ))
+        tasks.map((task) => <Task {...task} key={task.id} />)
       ) : (
         <h1 className="text-xl font-medium text-gray-400">
           Proper planning and preparation prevents poor performance. 💡

@@ -8,7 +8,7 @@ import {
 } from "../features/taskSlice";
 
 const Task = (props) => {
-  const { name, id, checked, editable } = props
+  const { name, id, checked, editable } = props;
   const dispatch = useDispatch();
   const [updateText, setUpdateText] = useState(name);
   const updateTodo = () => {
@@ -20,8 +20,9 @@ const Task = (props) => {
   return (
     <div className="flex items-center justify-between border-b border-solid py-3 border-gray-300 ">
       <div
-        className={`flex items-center gap-5 text-gray-300 text-2xl font-normal flex-grow ${checked && "line-through"
-          }`}
+        className={`flex items-center gap-5 text-gray-300 text-2xl font-normal flex-grow ${
+          checked && "line-through"
+        }`}
       >
         <input
           type="checkbox"
