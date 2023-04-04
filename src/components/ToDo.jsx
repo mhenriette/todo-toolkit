@@ -8,8 +8,9 @@ const ToDo = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
   const handleText = () => {
-    if (text.length > 0) {
-      dispatch(addTask(text));
+    if (text.length > 0 && text.trim().length !== 0) {
+      const taskName = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
+      dispatch(addTask(taskName));
       setText("");
     } else alert("The name of the task must be provided");
   };
@@ -23,9 +24,9 @@ const ToDo = () => {
           className="flex-grow py-3 outline-none"
           name="taskName"
           value={text}
-          onChange={(event) => {
-            setText(event.target.value);
-          }}
+          onChange={(event) =>
+            setText(event.target.value)
+          }
         />
         <button>
           <img

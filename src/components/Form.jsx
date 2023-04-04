@@ -3,17 +3,13 @@ import Task from "./Task";
 
 const Form = () => {
   const tasks = useSelector((state) => state.tasks.value);
-  console.log(tasks, "tasks");
   return (
     <form className="m-5" onSubmit={(event) => event.preventDefault()}>
       {tasks.length > 0 ? (
         tasks.map((task) => (
-          <Task
-            title={task.name}
-            id={task.id}
-            checked={task.checked}
+          < Task
+            {...task}
             key={task.id}
-            editable={task.editable}
           />
         ))
       ) : (

@@ -7,9 +7,10 @@ import {
   updateTask,
 } from "../features/taskSlice";
 
-const Task = ({ title, id, checked, editable }) => {
+const Task = (props) => {
+  const { name, id, checked, editable } = props
   const dispatch = useDispatch();
-  const [updateText, setUpdateText] = useState(title);
+  const [updateText, setUpdateText] = useState(name);
   const updateTodo = () => {
     if (editable) {
       dispatch(updateTask({ text: updateText, id }));
@@ -19,28 +20,25 @@ const Task = ({ title, id, checked, editable }) => {
   return (
     <div className="flex items-center justify-between border-b border-solid py-3 border-gray-300 ">
       <div
-        className={`flex items-center gap-5 text-gray-300 text-2xl font-normal flex-grow ${
-          checked && "line-through"
-        }`}
+        className={`flex items-center gap-5 text-gray-300 text-2xl font-normal flex-grow ${checked && "line-through"
+          }`}
       >
         <input
           type="checkbox"
-          name={title}
-          value={title}
+          value={name}
           checked={checked}
           id={id}
           onChange={() => dispatch(taskChecked(id))}
         />
         {editable ? (
           <input
-            name={updateText}
             value={updateText}
             type="text"
             onChange={(event) => setUpdateText(event.target.value)}
             className="bg-gray-600"
           />
         ) : (
-          <label htmlFor="trial">{title}</label>
+          <label htmlFor="trial">{name}</label>
         )}
       </div>
       <div className="flex items-center gap-3">
@@ -51,7 +49,7 @@ const Task = ({ title, id, checked, editable }) => {
           <span>Delete</span>
         </button>
         <button
-          onClick={() => updateTodo()}
+          onClick={updateTodo}
           className="bg-blue-600 px-3 text-gray-300 text-sm py-1"
         >
           <span>{editable ? "Save" : "Edit"}</span>
